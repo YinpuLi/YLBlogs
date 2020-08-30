@@ -18,7 +18,7 @@ A common procedure procedure is to restrict $$F(x)$$ to be a member of a paramet
 $$\begin{aligned}
 F(x;\left\lbrace \beta_m, \alpha_m \right\rbrace_1^M) = \sum_{m=1}^M \beta_m h(x;\alpha_m)
 \end{aligned}.$$ 
-In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of **parameter optimization in parameter space**. Such optimization proceedures could result in infeasible solutions or cost expensive computational power. In such cases, rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach and apply **numerical optimization in function space**. That is, we consider $F(x)$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space. In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. 
+In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of **parameter optimization in parameter space**. Such optimization proceedures could result in infeasible solutions or cost expensive computational power. In such cases, rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach and apply **numerical optimization in function space**. That is, we consider $F(x)$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space. In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. \alpha is a bood
 
 
 
