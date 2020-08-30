@@ -4,7 +4,20 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
+Boosting algorithms have enjoyed a wilde popularity in academia and industry, when function estimation/approximation is in need. This article will introduce a gradient boosting machine that has high performance in reality.
+
+## An Old Problem: Function Estimation
+
+
+
+
+
+
+
+
+
+
+
 
 ## Possible Questions
 
