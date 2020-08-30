@@ -8,6 +8,7 @@ Boosting algorithms have enjoyed a wilde popularity in academia and industry, wh
 
 ## An Old Problem: Function Estimation
 
+In the function estimation or "predictive learning", one uses a "traning" sample {$$y_{i}, x_i$$}, $$i = 1,... N$$ to obtain an estimate or approximation $$\hat{F}(x)$$, of the function $$F^*(x)$$ mapping $$x$$ to $$y$$, that minimizes the expectation of some specified loss function $$L(y, F(x))$$ over the joint distribtion of all $$(y,x)$$-values.
 
 
 
