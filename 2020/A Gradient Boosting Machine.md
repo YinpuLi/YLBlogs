@@ -14,26 +14,13 @@ $$F^* = arg~min_F~\mathbb{E}_{y,x}~L(y,F(x)) = arg~min_F~\mathbb{E}_x[\mathbb{E}
 
 ### Two Approaches in Function Estimation
 
-A common procedure procedure is to restrict $$F(x)$$ to be a member of a parameterized class of functions $$F(x;P)$$, where $$P = \left\lbrace P_1, P_2\cdots \right\rbrace$$ is a finite set of parameters whose joint values identify individual class members.
-
-Another appealing strategy is to proceed the optomization in functional space.
-
-In this article, we focus on "additive" expansions of the form,
-         
+A common procedure procedure is to restrict $$F(x)$$ to be a member of a parameterized class of functions $$F(x;P)$$, where $$P = \left\lbrace P_1, P_2\cdots \right\rbrace$$ is a finite set of parameters whose joint values identify individual class members. In this article, we focus on "additive" expansions of the form,
 $$\begin{aligned}
 F(x;\left\lbrace \beta_m, \alpha_m \right\rbrace_1^M) = \sum_{m=1}^M \beta_m h(x;\alpha_m)
-\end{aligned}$$ 
+\end{aligned}.$$ 
+In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of **parameter optimization in parameter space**. Such optimization proceedures could result in infeasible solutions or cost expensive computational power. In such cases, rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach and apply **numerical optimization in function space**. That is, we consider $F(x)$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space. In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. 
 
-#### Numerical Optimization in Parametric Space
 
-In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of parameter optimization in parameter space.
-
-#### Numerical Optimization in Functional Space
-
-Rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach an apply numerical optimization in function space. That is, we consider $F(x)$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space.
-
-In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. Sticking to the additive structure and following the numerical optimization paradigm we take the solution to be 
-$$F^*(x) = \sum_{m=0}^M~f_m(x),$$
 
 
 
