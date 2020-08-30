@@ -1,4 +1,4 @@
-# A Gradient Boosting Machine
+# A Gradient Boosting Machine: Tree Boost
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
