@@ -20,9 +20,9 @@ Another appealing strategy is to proceed the optomization in functional space.
 
 In this article, we focus on "additive" expansions of the form,
          
-\center $$\begin{aligned}
+$$\begin{aligned}
 F(x;\left\lbrace \beta_m, \alpha_m \right\rbrace_1^M) = \sum_{m=1}^M \beta_m h(x;\alpha_m)
-\end{aligned}$$ \center 
+\end{aligned}$$ 
 
 #### Numerical Optimization in Parametric Space
 
