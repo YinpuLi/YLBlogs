@@ -54,30 +54,61 @@ In summary, it leads to the generic gradient boosting algorithm suing steepest-d
 For regression problems, $$y\in \mathbb{R}$$, a natural choice for estimating the smoothed negative gradient would be least-squares. In classification problems where $$y\in \left\lbrace -1,1 \right\rbrace$$, the quantity $$yF$$ is called the "margin" and the steepest-descent is performed in the space of margin values, rather than the space of function values $$F$$. A different strategy is popular of casting regression into the framework of classification in the context of the AdaBoost algorithm.
 
 Basically, we could choose different loss criteria and apply the gradient boosting strayegy, and develop different algorithms.
-### LS Gradient Boosting
+-  LS Gradient Boosting
 The most popular loss crteria is the least-squares(LS), where $$L(y,F) = (y-F)^2/2$$. The pseudo-response will be $$\tilde{y}_i = y_i - F_{m-1}(x_i)$$. Thus, the gradient boosting on squared-error loss produces the usual stagewise approach of iteratively fitting the current residuals.
 
-### LAD Gradient Boosting
+- LAD Gradient Boosting
 In this case, the locss criteria is least absolute deviation(LAD) with $$L(y, F) = |y-F|$$. The pseudo-response will be the sign of current residuals. 
 
-### Regression Tree-based Gradient Boosting
+- Regression Tree-based Gradient Boosting
 Here we consider the special cse where each base learner is a regression tree. Each regression tree model itself has the additive form 
 $$\begin{aligned}
 h(x;\left\lbrace b_j, R_j\right\rbrace_1^{J}) = \sum_{j=1}^J b_j \mathbb{1}(x\in R_j).
 \end{aligned}$$
 Here $$\left\lbrace R_j \right\rbrace_1^J$$ are disjoint regions that collectively cover the space of all joint values of the predictor variables $$x$$. The regions are represented by the terminal nodes of the correpsonding tree. Because the regions are disjoint, the formula above is equivalent to the prediction rule: if $$x\in R_j$$ then $$h(x) = b_j$$. 
 
-For a regression tree, the update at line 6 of ***Algorithm 1*** becomes
-$$\begin{aligned}
-F_m(x) = F_{m-1}(x) + \rho_m \sum_{j=1}^J b_{jm} \mathbb{1}(x\in R_{jm}).
-\end{aligned}$$
-The $$\left\lbrace  R_{jm} \right\rbrace_1^J$$ are the regions defined by the terminal nodes of the tree at the $$m$$th iteration. They are constructed to predict the pseudo-responses
+    For a regression tree, the update at line 6 of ***Algorithm 1*** becomes
+    $$\begin{aligned}
+    F_m(x) = F_{m-1}(x) + \rho_m \sum_{j=1}^J b_{jm} \mathbb{1}(x\in R_{jm}).
+    \end{aligned}$$
+    The $$\left\lbrace  R_{jm} \right\rbrace_1^J$$ are the regions defined by the terminal nodes of the tree at the $$m$$th iteration. They are constructed to predict the pseudo-responses $$\left\lbrace \tilde{y}_i\right\rbrace_1^N$$ by least-squares. The $$\left\lbrace b_{jm}\right\rbrace$$ are the corresponding least-squares coefficients, given by $$b_{jm} = \text{ave}_{x_i \in R_{jm}}\tilde{y}_i$$. By line search, we get the scaling factor $$\rho_m$$ and the update can be alternatively expressed as 
+    $$\begin{aligned}
+     F_m(x) &= F_{m-1}(x) +  \sum_{j=1}^J \rho_mb_{jm} \mathbb{1}(x\in R_{jm})\\
+            &= F_{m-1}(x) +  \sum_{j=1}^J \gamma_{jm} \mathbb{1}(x\in R_{jm}).
+    \end{aligned}$$
+    We can view the last expression as adding $$J$$ separate bases functions at each step $$\left\lbrace \mathbb{1}(x \in R_{jm})\right\rbrace_1^J$$. 
+    
+    We can further improve the quality of the fit by using the optimal coefficients for each of these separate basis functions, and these optimal coefficients are the solution to
+    $$\left\lbrace \gamma_{jm}\right\rbrace_1^J = argmin_{\left\lbrace \gamma_{j}\right\rbrace_1^J} \sum_1^N L(y_i, F_{m-1}(x_i) + \sum_1^J \gamma_j \mathbb{1}(x\in R_{jm}))$$.
+    
+    Owing to the disjoint nature of the regions produced by regression trees, this reduces to $$\gamma_{jm} = argmin_{\gamma} \sum_{x_i\in R_{jm}} L(y_i, F_{m-1}(x_i) + \gamma )$$.
+    
+    The solution above recovers the least square regression gradient boosting with regression tree basis. For the case of LAD regression the solution becomes  $$\gamma_{jm} = \text{median}_{x_i\in R_{jm}}\left\lbrace y_i-F_{m-1}(x_i) \right\rbrace,$$ which is simply the median of the current residuals in the $$j$$th terminal node at the $$m$$th iteration. At each iteration a regession tree is built to best predict the *sign* of the current residuals $$y_i-F_{m-1}(x_i)$$, based on a least-squares criterion. Then the approximation is updated by adding the median of the residuals in each of the derived terminal nodes. We summarize this algorithm as follows,
+    >***Algorithm 2: LAD Tree Boost***
+    > 1. $$F_0(x) = \text{median}\left\lbrace y_i \right\rbrace_1^N$$
+    > 2. For $$m = 1$$ to $$M$$ do:
+    > $$\begin{aligned}
+    \tilde{y}_i = \text{sign} (y_i - F_{m-1}(x_i))
+    \end{aligned},~i = 1,\cdots, N$$
+    > $$\left\lbrace R_{jm} \right\rbrace_1^J = J\text{-terminal node tree}(\left\lbrace \tilde{y}_i, x_i \right\rbrace_1^N)$$
+    >$$\begin{aligned}
+    \gamma_{jm} = \text{median}_{x_i \in R_{jm}} (y_i - F_{m-1}(x_i))
+    \end{aligned},~j = 1,\cdots, J$$
+    >$$F_m(x) = F_{m-1}(x) + \sum_{j=1}^J \gamma_{jm} \mathbb{1}(x \in R_{jm})$$
+    > end for
+    
+    ***Algorithm 2*** is highly robust. The trees use only order information on the individual input variables $$x_k$$, and the pseudoresponses $$\tilde{y}_i\in \left\lbrace -1, 1 \right\rbrace$$. The terminal node updates are based on medians. It is fast since it uses least-squares to induce the trees. Squared-error loss is much more rapidly.
 
+- M/Huber Gradient Boosting
+    M-regresion techniques attempt resistance to long-tailed error distributions and outliers while maintaining high efficiency for normally distributed errors. We consider the Huber loss function
+    $$\begin{aligned}L(y,F) = 
+    \begin{cases}
+    \frac{1}{2}(y-F)^2, & |y-F| \leq \delta, \\
+    \delta(|y-F| - \delta/2), & |y-F| > \delta.
+    \end{cases}\end{aligned}$$
 
+    The value of the transition point $$\delta$$ defines those residual values that are considered to be "outliers", subject to absolute rather than squared-error loss. According to the motivations underlying robust regression, the boosting regression trees based on Huber loss should have properties similar to that of least-squares boosting for normally distributed errors, and similar to that of least absolute deviation regression with very long-tailed distributions. For error distributions with only moderately long tails it can have performance superior to both.
 
-
-
-### M/Huber Gradient Boosting
 
 ### L/Logistic Binamial Log-likelihood Gradient Boosting
 
