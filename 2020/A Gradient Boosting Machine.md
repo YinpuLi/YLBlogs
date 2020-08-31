@@ -110,7 +110,27 @@ Here $$\left\lbrace R_j \right\rbrace_1^J$$ are disjoint regions that collective
     The value of the transition point $$\delta$$ defines those residual values that are considered to be "outliers", subject to absolute rather than squared-error loss. According to the motivations underlying robust regression, the boosting regression trees based on Huber loss should have properties similar to that of least-squares boosting for normally distributed errors, and similar to that of least absolute deviation regression with very long-tailed distributions. For error distributions with only moderately long tails it can have performance superior to both.
 
 
-### L/Logistic Binamial Log-likelihood Gradient Boosting
+- L/Logistic Binomial Log-likelihood Gradient Boosting
+    When the response is binary, we develop a gradient-descent boosting algorithm for the binary classification, where the loss function is negative binomial log-likelihood, $$L(y, F) = log(1 + exp(-2yF)), ~~y\in \left\lbrace -1, 1 \right\rbrace,$$ with $$F(x) = \frac{1}{2}~log\left[\frac{\mathbb{P}(y=~~1|x)}{\mathbb{P}(y=-1|x)}\right]$$. Following similar procedure with the general gradient boosting in ***Algorithm 1***, we have a two-class logistic regression and classification gradient boosting algorithm. However, there is no closed-form solution when optimizing $$\gamma_{jm}$$. We approximate it by a single Newton-Raphson step.
+
+    We could futher extend the logistic binomial gradient boosting to multiclass logistic regression and classification problems.
+
+## Regulirization 
+
+In prediction problems, regularization methods attempt to prevent "overfitting" by constraining the fitting procedure. In additive models, two natural regularization parameters are the number of components $$M$$ and learning rate $$\nu$$.
+
+- $$M$$
+    - Regularizing by controlling the number of terms in the additive expansion places a prior belief that "sparse" approximations involving fewer terms are likely to provide better prediction. This is analogous to stepwise regression where the additive components are considered explanatory variables that are sequentially entered. 
+
+    - The best $$M$$ can be estimated by some model selection method, such as train/test split or cross-validation.
+- $$\nu$$:
+    - It has often been found that regularization through shrinkage provides superior results to that obtained by restricting the number of components. In ***Algorithm 1***, each update is simply scaled by the value of the "learing rate" paratemer $$\nu$$.
+    
+
+Both of these two regularization parameters can control the degree of fit and thus affect the best value for the other one. Decreasing the value of $$\nu$$ increases the best value for $$M$$. Ideally one should estimate optimal values for both by minimizing a model selection criterion jointly with respect to the values of the two parameters. There are also computational considerations; increasing the size of $$M$$ produces a proportionate increase in computation. 
+
+
+
 
 ### Tree Boost
 
@@ -119,18 +139,15 @@ Here $$\left\lbrace R_j \right\rbrace_1^J$$ are disjoint regions that collective
 
 
 
-## Possible Questions
-
- - What's the the difference between estimating/approximating functions as a numerical optimization in functional space, and in parameter space?
- - What is the connection between boosting algorithms and Bayesian trees?
- - Why the 
 
 
 # New Features!
 
   - Import a HTML file and watch it magically convert to Markdown
   - Drag and drop images (requires your Dropbox account be linked)
-
+- item
+    - item 
+        - item 
 
 You can also:
   - Import and save files from GitHub, Dropbox, Google Drive and One Drive
