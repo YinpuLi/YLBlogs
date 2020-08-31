@@ -18,14 +18,53 @@ A common procedure procedure is to restrict $$F(x)$$ to be a member of a paramet
 $$\begin{aligned}
 F(x;\left\lbrace \beta_m, \alpha_m \right\rbrace_1^M) = \sum_{m=1}^M \beta_m h(x;\alpha_m)
 \end{aligned}.$$ 
-In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of **parameter optimization in parameter space**. Such optimization proceedures could result in infeasible solutions or cost expensive computational power. In such cases, rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach and apply **numerical optimization in function space**. That is, we consider $F(x)$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space. In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. \alpha is a bood
+In general, choosing a parameterized model $$F(x;P)$$ changes the function optimization problem to one of **parameter optimization in parameter space**. Such optimization proceedures could result in infeasible solutions or cost expensive computational power. In such cases, rather than considering function estimation in the perspective of parameter space, we take a "non-parametric" approach and apply **numerical optimization in function space**. That is, we consider $$F(x)$$ evaluated at each point $$x$$ to be a "parameter" and optimize over the functional space. In function space there are an infinite number of such "parameters", but in data sets only a finite number $$\left\lbrace F(x_i) \right\rbrace_1^N$$ are involved. 
 
+We stick to the optimization in parameter space and make a connection between stagewise additive expansions and steepest-descent minimization.
 
+## Gradient Boost
 
+The general gradient descent boosting uses a "greedy stegewise" approach, where for $$m = 1,2,\cdots, M,$$
+$$(\beta_m, \alpha_m) = arg~min_{\beta, \alpha}~\sum_{i=1}^N~L(y_i, F_{m-1}(x_i) + \beta h(x_i;\alpha)),$$
+and then 
+$$F_m(x) = F_{m-1}(x) + \beta_mh(x;\alpha_m).$$
 
+This form has been widely used in different areas. In signal processing this stagewise strategy is called "matching pursuit" where the loss function $$L(y,F)$$ is squared-error loss and the $$h(x;\alpha)$$ are called basis functions. In machine learning, the procedure of developing the additive components after numerical optimizing, is called "boosting". Common names in machine learning for $$h$$ are "weak learner" or "base learner", especially when $$h$$ is a classification tree.
 
+The procedure above has a clear form but the solution to $$(\beta,\alpha)$$ could be difficult to obtain for a particular loss $$L(y, F)$$ and/or base learner $$h(x;\alpha)$$. So on second look over the procedure, we find that given any approximator $$F_{m-1}(x)$$, the additive component $$\beta_mh(x;\alpha_m)$$ can be viewed as the best greedy step toward the data-based estimate of $$F^*(x)$$, with constraint that the step "direction" $h(x;\alpha_m)$ belongs to the assumpted parameterized/functional class. It can thus be regarded as a steepest descent step under some constraint. Roughly speaking, the constraint is applied to the unconstrianed solution by fitting $$h(x;a)$$ to the "pseudoresponses" $$\left\lbrace \tilde{y}_i = -g_m(x_i) \right\rbrace_1^N$$, with $$-g_m(x_i)$$ being the unconstrained negative gradient,
 
+$$\begin{aligned}
+-g_m(x_i) = \left(\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} \right)_{F = F_{m-1}}
+\end{aligned}.$$
 
+This replaces the difficult function minization problem by least-squares function minimization, followed by only a single parameter optimization. Thus, one can use this approach to minimize any differentiable loss $L(y,F)$ in conjunction with forward stagewise additive modeling.
+
+In summary, it leads to the generic gradient boosting algorithm suing steepest-descent.
+>***Algorithm: Gradient Boosting***
+> 1. $$F_0(x) = arg min_{\rho}\sum_{i=1}^N L(y_i, \rho)$$
+> 2. For $$m = 1$$ to $$M$$ do:
+> $$\begin{aligned}
+\tilde{y}_i = \left(\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} \right)_{F = F_{m-1}}
+\end{aligned},~i = 1,\cdots, N$$
+> $$\alpha_m = argmin_{\alpha,\beta}\sum_{i=1}^N \left[\tilde{y}_i - \beta h(x_i;\alpha) \right]^2$$
+>$$\rho_m = argmin_{\rho}\sum_{i=1}^N L(y_i, F_{m-1} + \rho h(x_i;\alpha_m))$$
+>$$F_m(x) = F_{m-1}(x) + \rho_m h(x; \alpha_m)$$
+> end for
+
+For regression problems, $$y\in \mathbb{R}$$, a natural choice for estimating the smoothed negative gradient would be least-squares. In classification problems where $$y\in \left\lbrace -1,1 \right\rbrace$$, the quantity $$yF$$ is called the "margin" and the steepest-descent is performed in the space of margin values, rather than the space of function values $$F$$. A different strategy is popular of casting regression into the framework of classification in the context of the AdaBoost algorithm.
+
+Basically, we could choose different loss criteria and apply the gradient boosting strayegy, and develop different algorithms.
+### LS Gradient Boosting
+The most popular loss crteria is the least-squares(LS), where $$L(y,F) = (y-F)^2/2$$. The pseudo-response will be $$\tilde{y}_i = y_i - F_{m-1}(x_i)$$. Thus, the gradient boosting on squared-error loss produces the usual stagewise approach of iteratively fitting the current residuals.
+
+### LAD Gradient Boosting
+In this case, the locss criteria is least absolute deviation(LAD) with $$L(y, F) = |y-F|$$.
+
+### M/Huber Gradient Boosting
+
+### L/Logistic Binamial Log-likelihood Gradient Boosting
+
+### Tree Boost
 
 
 
