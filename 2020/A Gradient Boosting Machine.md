@@ -40,7 +40,7 @@ $$\begin{aligned}
 This replaces the difficult function minization problem by least-squares function minimization, followed by only a single parameter optimization. Thus, one can use this approach to minimize any differentiable loss $L(y,F)$ in conjunction with forward stagewise additive modeling.
 
 In summary, it leads to the generic gradient boosting algorithm suing steepest-descent.
->***Algorithm: Gradient Boosting***
+>***Algorithm 1: Gradient Boosting***
 > 1. $$F_0(x) = arg min_{\rho}\sum_{i=1}^N L(y_i, \rho)$$
 > 2. For $$m = 1$$ to $$M$$ do:
 > $$\begin{aligned}
@@ -58,7 +58,24 @@ Basically, we could choose different loss criteria and apply the gradient boosti
 The most popular loss crteria is the least-squares(LS), where $$L(y,F) = (y-F)^2/2$$. The pseudo-response will be $$\tilde{y}_i = y_i - F_{m-1}(x_i)$$. Thus, the gradient boosting on squared-error loss produces the usual stagewise approach of iteratively fitting the current residuals.
 
 ### LAD Gradient Boosting
-In this case, the locss criteria is least absolute deviation(LAD) with $$L(y, F) = |y-F|$$.
+In this case, the locss criteria is least absolute deviation(LAD) with $$L(y, F) = |y-F|$$. The pseudo-response will be the sign of current residuals. 
+
+### Regression Tree-based Gradient Boosting
+Here we consider the special cse where each base learner is a regression tree. Each regression tree model itself has the additive form 
+$$\begin{aligned}
+h(x;\left\lbrace b_j, R_j\right\rbrace_1^{J}) = \sum_{j=1}^J b_j \mathbb{1}(x\in R_j).
+\end{aligned}$$
+Here $$\left\lbrace R_j \right\rbrace_1^J$$ are disjoint regions that collectively cover the space of all joint values of the predictor variables $$x$$. The regions are represented by the terminal nodes of the correpsonding tree. Because the regions are disjoint, the formula above is equivalent to the prediction rule: if $$x\in R_j$$ then $$h(x) = b_j$$. 
+
+For a regression tree, the update at line 6 of ***Algorithm 1*** becomes
+$$\begin{aligned}
+F_m(x) = F_{m-1}(x) + \rho_m \sum_{j=1}^J b_{jm} \mathbb{1}(x\in R_{jm}).
+\end{aligned}$$
+The $$\left\lbrace  R_{jm} \right\rbrace_1^J$$ are the regions defined by the terminal nodes of the tree at the $$m$$th iteration. They are constructed to predict the pseudo-responses
+
+
+
+
 
 ### M/Huber Gradient Boosting
 
