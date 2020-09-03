@@ -119,190 +119,44 @@ Here $$\left\lbrace R_j \right\rbrace_1^J$$ are disjoint regions that collective
 
 In prediction problems, regularization methods attempt to prevent "overfitting" by constraining the fitting procedure. In additive models, two natural regularization parameters are the number of components $$M$$ and learning rate $$\nu$$.
 
-- $$M$$
+- Number of additive components $$M$$
     - Regularizing by controlling the number of terms in the additive expansion places a prior belief that "sparse" approximations involving fewer terms are likely to provide better prediction. This is analogous to stepwise regression where the additive components are considered explanatory variables that are sequentially entered. 
 
     - The best $$M$$ can be estimated by some model selection method, such as train/test split or cross-validation.
-- $$\nu$$:
+- Learning rate $$\nu$$:
     - It has often been found that regularization through shrinkage provides superior results to that obtained by restricting the number of components. In ***Algorithm 1***, each update is simply scaled by the value of the "learing rate" paratemer $$\nu$$.
     
 
-Both of these two regularization parameters can control the degree of fit and thus affect the best value for the other one. Decreasing the value of $$\nu$$ increases the best value for $$M$$. Ideally one should estimate optimal values for both by minimizing a model selection criterion jointly with respect to the values of the two parameters. There are also computational considerations; increasing the size of $$M$$ produces a proportionate increase in computation. 
+Both of these two regularization parameters can control the degree of fit and thus affect the best value for the other one. Decreasing the value of $$\nu$$ increases the best value for $$M$$. Ideally one should estimate optimal values for both by minimizing a model selection criterion jointly with respect to the values of the two parameters. There are also computational considerations; increasing the size of $$M$$ produces a proportionate increase in computation. Despite the two primary hyperparameters above, another important regularization parameter is the maximum number of terminal nodes $$J$$. 
+
+- Number of terminal nodes $$J$$:
+    - In boosting regression trees, the interaction order can be controlled by limiting the size of the individual trees induced at each iterataion. 
+    - The boosting process is additive, so the interaction order of the entire approximation can be no larger than the largest among its individual components. Therefore, with any of the tree-based gradient boosting procedures, the best tree size $$J$$ is gevened by the effective interaction order of the target $$F^*$$. This is usually unknown so that $$J$$ becomes a hyperparameter of the prcedure to be estimated using a model selection criteriom such as train-test split or cross-validation. Howerver, it is unlikely that large trees would ever be necessary or desirable. 
 
 
+## More about Tree Boosting
+
+## Why TreeBoost is a strong candidate in Data Mining
+
+So far, we have introduced the general gradient boosting algorithms and have put an emphasis over the gradient boosting algorithms based on tree. As "off-the-shelf" tools for predictive data mining, such procedures have some attractive porperties. They inherit the favorable characterisctics of trees while mitigating many of the unfavorable ones.
+### Pros
+- All tree-based boosting algorithms are invariant under all strictly monotoe transformations of the individual input variables. 
+    - So, not need to consider input variable transformations.
+    - Sensitivity to long-tailed ditributions and outliers is eleminated.
+    - LAD-TreeBoost is robust against output outliers.
+    - M-TreeBoost is robust against output outliers.
+- Tree-based models are robust against the addition of irrelevant input features.
+- Tree-based models handle missing values in a unified and elegant manner. There is no need to consider external imputation schemes.
+### Cons in single trees and what TreeBoost do about them
+- Single tree models are inaccurate. This is a consequent of the coarse nature of their piecewise constant approximations, especially for small trees,the principal disadvantage is inaccurate.
+- Single trees are unstable due to the fact that they involve predominately high-order interactions, especially for large trees.
+
+The disadvantages above are mitigated by boosting. 
+- TreeBoost procedures produce *finer* piecewise constant approximations.
+- TreeBoost enhances stability by using small trees and by the effect of averaging over the ensemble of them.
+- The intearction level of TreeBoost approximations is effectively controlled by limiting the size of the individual constituent trees.
 
 
-### Tree Boost
-
-
-
-
-
-
-
-
-# New Features!
-
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
-- item
-    - item 
-        - item 
-
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
-
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](https://breakdance.github.io/breakdance/) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-### Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
-```sh
-$ cd dillinger
-$ npm install -d
-$ node app
-```
-
-For production environments...
-
-```sh
-$ npm install --production
-$ NODE_ENV=production node app
-```
-
-### Plugins
-
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-
-
-### Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
-```
-
-Second Tab:
-```sh
-$ gulp watch
-```
-
-(optional) Third:
-```sh
-$ karma test
-```
-#### Building for source
-For production release:
-```sh
-$ gulp build --prod
-```
-Generating pre-built zip archives for distribution:
-```sh
-$ gulp build dist --prod
-```
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
-
-```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version} .
-```
-This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
-```
-
-Verify the deployment by navigating to your server address in your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-#### Kubernetes + Google Cloud
-
-See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
-
-
-### Todos
-
- - Write MORE Tests
- - Add Night Mode
-
-License
-----
-
-MIT
-
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
    [AngularJS]: <http://angularjs.org>
    [Gulp]: <http://gulpjs.com>
 
