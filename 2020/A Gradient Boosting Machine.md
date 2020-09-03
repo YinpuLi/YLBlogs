@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Boosting algorithms have enjoyed a wilde popularity in academia and industry, when function estimation/approximation is in need. This article will introduce a gradient boosting machine that has high performance in reality.
+Boosting is one of the most successful and practical methods and hence have enjoyed a wide popularity in both academia and the machine learning community in industry, when function estimation/approximation is in need. This article will introduce a gradient boosting machine that has high performance in reality.
 
 ## An Old Problem: Function Estimation
 
@@ -151,7 +151,8 @@ So far, we have introduced the general gradient boosting algorithms and have put
 - Single tree models are inaccurate. This is a consequent of the coarse nature of their piecewise constant approximations, especially for small trees,the principal disadvantage is inaccurate.
 - Single trees are unstable due to the fact that they involve predominately high-order interactions, especially for large trees.
 
-The disadvantages above are mitigated by boosting. 
+The disadvantages above are mitigated by boosting. The improved performance through boosting, the ensemble of *weak learners*, has been impressive and is associated with boosting's resistance to overfitting.
+
 - TreeBoost procedures produce *finer* piecewise constant approximations.
 - TreeBoost enhances stability by using small trees and by the effect of averaging over the ensemble of them.
 - The intearction level of TreeBoost approximations is effectively controlled by limiting the size of the individual constituent trees.
