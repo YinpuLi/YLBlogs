@@ -33,6 +33,21 @@ The syntax for creating images is nearly the same as for links. Images also have
 
 ## Blockquotes
 
+A blockquote is a sentence or paragraph that has been specially formatted to attention. To create a blck quote, all you need to do is preface a line with the _greater than_ caret. You can also place a caret character on each line of the quote. This is particularly useful if your quote spans multiple paragraphs. Notice than even blank lines must contain the caret character to ensure the entire blockquote be grouped together.
+
+## Lists
+
+- Ordered lists: an ordered list is prefaced with numbers.
+- Unordered lists/Bullet points: you will preface each item in the list with an asterisk. Each list item also gets its own line. And you could nest the list within another list. All you have to do is to indent each asterisk one space more than the preceding item.
+
+While you could continue to indent and add sub-lists indefinitely, it's usually better to stop after three levels. There are some other tricks to lists and indentation that deal with the case of paragraphs. Your paragraph must start on a line all by itself underneath the bullet point, and it must be indented by at least one space. 
+
+## Paragraphs
+
+If you forcelly insert a new line, you end up breaking the content into paragraphs. You can also accomplish this by inserting two spaces after each new line. Though the spaces are invisible, but it will break the line and start with a new paragraph.
+
+The second _soft_ trick could be use in formatting paragraphs in lists, which will tighten the sub-paragraphs.
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
