@@ -35,6 +35,13 @@ There are six types of headers, in decreasing sizes:
 #### Header level 4
 ##### Header level 5
 ###### Header level 6
+
+
+Heading
+======
+
+Sub-heading
+-----------
 ```
 
 And you will see
@@ -44,6 +51,11 @@ And you will see
 >#### Header level 4
 >##### Header level 5
 >###### Header level 6
+>Heading
+>======
+>
+>Sub-heading
+>-----------
 
 You simply place the same number of hash marks as the size of the header you want.
 
@@ -127,6 +139,28 @@ If you forcelly insert a new line, you end up breaking the content into paragrap
 The second _soft_ trick could be use in formatting paragraphs in lists, which will tighten the sub-paragraphs.
 
 
+```markdown
+
+Paragraphs are separated by a blank line,
+
+This will be a hard break.
+
+Two spaces at the end of a line  
+produces a line break.  
+This is a soft break.
+
+```
+
+
+
+
+>Paragraphs are separated by a blank line,
+>
+>This will be a hard break.
+>
+>Two spaces at the end of a line  
+>produces a line break.  
+>This is a soft break.
 
 
 
