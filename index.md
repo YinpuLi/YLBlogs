@@ -6,6 +6,7 @@
 - To make a phrase _italic_ in Markdown, you can surround words with one underscore or one asterisk on each side of the pharse;
 - To make a phrase **bold** in Markdown, you can surround words with two asterisks on both sides;
 - To make a pharase ***both italics and bold***, you can surround words with three asterisks on both sides.
+
 ```markdown
 **Bold** and _Italic_ 
 
@@ -75,6 +76,7 @@ And you will see
 ## Images
 
 The syntax for creating images is nearly the same as for links. Images also have two styles, just like links, and both of them render exactly the same way. The only difference is that the images are prefaced with an exclamation point.
+
 ```markdown
 ![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
 ```
@@ -93,6 +95,7 @@ A blockquote is a sentence or paragraph that has been specially formatted to att
 - Unordered lists/Bullet points: you will preface each item in the list with an asterisk. Each list item also gets its own line. And you could nest the list within another list. All you have to do is to indent each asterisk one space more than the preceding item.
 
 While you could continue to indent and add sub-lists indefinitely, it's usually better to stop after three levels. There are some other tricks to lists and indentation that deal with the case of paragraphs. Your paragraph must start on a line all by itself underneath the bullet point, and it must be indented by at least one space. 
+
 
 ```markdown
 
