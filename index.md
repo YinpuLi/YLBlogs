@@ -80,7 +80,7 @@ The syntax for creating images is nearly the same as for links. Images also have
 
 And you will see
 
->![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
+![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
 
 ## Blockquotes
 
