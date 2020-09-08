@@ -55,6 +55,8 @@ There are two different link types.
 [Yinpu's Webpage](https://yinpuli.github.io/)
 
 [Yinpu's Blog][my page]
+
+
 [my page]: https://yinpuli.github.io/
 
 ```
@@ -64,6 +66,8 @@ And you will see
 >[Yinpu's Webpage](https://yinpuli.github.io/)
 >
 >[Yinpu's Blog][my page]
+>
+>
 >[my page]: https://yinpuli.github.io/
 
 
