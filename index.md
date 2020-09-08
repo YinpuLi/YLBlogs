@@ -84,7 +84,7 @@ And you will see
 
 ## Blockquotes
 
-A blockquote is a sentence or paragraph that has been specially formatted to attention. To create a blck quote, all you need to do is preface a line with the _greater than_ caret. You can also place a caret character on each line of the quote. This is particularly useful if your quote spans multiple paragraphs. Notice than even blank lines must contain the caret character to ensure the entire blockquote be grouped together.
+A blockquote is a sentence or paragraph that has been specially formatted to attention. To create a block quote, all you need to do is preface a line with the _greater than_ caret. You can also place a caret character on each line of the quote. This is particularly useful if your quote spans multiple paragraphs. Notice than even blank lines must contain the caret character to ensure the entire blockquote be grouped together.
 
 ## Lists
 
@@ -107,13 +107,13 @@ While you could continue to indent and add sub-lists indefinitely, it's usually 
 
 And you will see
 
->- Bulleted
->- List
->  - Sublist
->  - Sublist
->
->1. Numbered
->2. List
+- Bulleted
+- List
+  - Sublist
+  - Sublist
+
+1. Numbered
+2. List
 
 
 ## Paragraphs
