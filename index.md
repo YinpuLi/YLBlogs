@@ -1,16 +1,31 @@
 # Writing in Markdown 101
 
-You can use the [editor on GitHub](https://github.com/YinpuLi/blogs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+
 
 ## Text Font Formatting
 - To make a phrase _italic_ in Markdown, you can surround words with one underscore or one asterisk on each side of the pharse;
 - To make a phrase **bold** in Markdown, you can surround words with two asterisks on both sides;
 - To make a pharase ***both italics and bold***, you can surround words with three asterisks on both sides.
+```markdown
+**Bold** and _Italic_ 
+
+*Italic*
+
+***Bold and Italic***
+```
 
 ## Headers
 
 There are six types of headers, in decreasing sizes:
 
+```markdown
+# Header level 1
+## Header level 2
+### Header level 3
+#### Header level 4
+##### Header level 5
+###### Header level 6
+```
 # Header level 1
 ## Header level 2
 ### Header level 3
@@ -26,10 +41,20 @@ There are two different link types.
 - The first link style is called an _inline link_. To create an inline link, you wrap the link text in brackets, and then wrap the link in parenthesis. 
 - The other link is called a _reference_ link, where the link is actually a reference to another place in the document. To create a reference link, you wrap the link text in one pair of brackets, and then wrap the reference text in a second pair of brackets. At the bottom of a Markdown documentm the reference texts are defined as proper links to outside websites, in the form of the same tag name wrapped in brackets, followed by a colon, followed by the link.
 
+```markdown
+[Yinpu's Webpage](https://yinpuli.github.io/)
+
+[Yinpu's Blog][my page]
+[my page]: https://yinpuli.github.io/
+
+```
+
 ## Images
 
 The syntax for creating images is nearly the same as for links. Images also have two styles, just like links, and both of them render exactly the same way. The only difference is that the images are prefaced with an exclamation point.
-
+```markdown
+![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
+```
 
 ## Blockquotes
 
@@ -42,22 +67,7 @@ A blockquote is a sentence or paragraph that has been specially formatted to att
 
 While you could continue to indent and add sub-lists indefinitely, it's usually better to stop after three levels. There are some other tricks to lists and indentation that deal with the case of paragraphs. Your paragraph must start on a line all by itself underneath the bullet point, and it must be indented by at least one space. 
 
-## Paragraphs
-
-If you forcelly insert a new line, you end up breaking the content into paragraphs. You can also accomplish this by inserting two spaces after each new line. Though the spaces are invisible, but it will break the line and start with a new paragraph.
-
-The second _soft_ trick could be use in formatting paragraphs in lists, which will tighten the sub-paragraphs.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
 
 - Bulleted
 - List
@@ -65,10 +75,24 @@ Syntax highlighted code block
 1. Numbered
 2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
+
+## Paragraphs
+
+If you forcelly insert a new line, you end up breaking the content into paragraphs. You can also accomplish this by inserting two spaces after each new line. Though the spaces are invisible, but it will break the line and start with a new paragraph.
+
+The second _soft_ trick could be use in formatting paragraphs in lists, which will tighten the sub-paragraphs.
+
+
+
+
+
+
+
+
+
+You can use the [editor on GitHub](https://github.com/YinpuLi/blogs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
