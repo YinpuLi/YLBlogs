@@ -2,10 +2,7 @@
 
 
 
-## Text Font Formatting
-- To make a phrase _italic_ in Markdown, you can surround words with one underscore or one asterisk on each side of the pharse;
-- To make a phrase **bold** in Markdown, you can surround words with two asterisks on both sides;
-- To make a pharase ***both italics and bold***, you can surround words with three asterisks on both sides.
+## Text Attributes
 
 ```markdown
 **Bold** and _Italic_ 
@@ -13,6 +10,17 @@
 *Italic*
 
 ***Bold and Italic***
+
+'monospace'
+
+Horizontal rule:
+
+---
+
+Strikethrough:
+
+~~strikethrough~~
+
 ```
 
 And you will see
@@ -22,6 +30,17 @@ And you will see
 >*Italic*
 >
 >***Bold and Italic***
+>
+>'monospace'
+>
+>Horizontal rule:
+>
+>---
+>
+>Strikethrough:
+>
+>~~strikethrough~~
+
 
 
 ## Headers
@@ -56,6 +75,8 @@ And you will see
 >
 >Sub-heading
 >-----------
+
+
 
 You simply place the same number of hash marks as the size of the header you want.
 
@@ -132,7 +153,7 @@ And you will see
 2. List
 
 
-## Paragraphs
+## Paragraphs and Spacing
 
 If you forcelly insert a new line, you end up breaking the content into paragraphs. You can also accomplish this by inserting two spaces after each new line. Though the spaces are invisible, but it will break the line and start with a new paragraph.
 
