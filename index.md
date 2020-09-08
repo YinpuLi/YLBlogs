@@ -14,6 +14,14 @@
 ***Bold and Italic***
 ```
 
+And you will see
+
+>**Bold** and _Italic_ 
+>
+>*Italic*
+>
+>***Bold and Italic***
+
 ## Headers
 
 There are six types of headers, in decreasing sizes:
