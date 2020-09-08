@@ -34,12 +34,14 @@ There are six types of headers, in decreasing sizes:
 ##### Header level 5
 ###### Header level 6
 ```
-# Header level 1
-## Header level 2
-### Header level 3
-#### Header level 4
-##### Header level 5
-###### Header level 6
+
+And you will see
+># Header level 1
+>## Header level 2
+>### Header level 3
+>#### Header level 4
+>##### Header level 5
+>###### Header level 6
 
 You simply place the same number of hash marks as the size of the header you want.
 
@@ -57,12 +59,24 @@ There are two different link types.
 
 ```
 
+And you will see
+
+>[Yinpu's Webpage](https://yinpuli.github.io/)
+>
+>[Yinpu's Blog][my page]
+>[my page]: https://yinpuli.github.io/
+
+
 ## Images
 
 The syntax for creating images is nearly the same as for links. Images also have two styles, just like links, and both of them render exactly the same way. The only difference is that the images are prefaced with an exclamation point.
 ```markdown
 ![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
 ```
+
+And you will see
+
+>![Check this Puppeteer for Github](https://octodex.github.com/puppeteer/)
 
 ## Blockquotes
 
@@ -79,11 +93,24 @@ While you could continue to indent and add sub-lists indefinitely, it's usually 
 
 - Bulleted
 - List
+  - Sublist
+  - Sublist
 
 1. Numbered
 2. List
 
 ```
+
+And you will see
+
+>- Bulleted
+>- List
+>  - Sublist
+>  - Sublist
+>
+>1. Numbered
+>2. List
+
 
 ## Paragraphs
 
