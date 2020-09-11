@@ -193,9 +193,9 @@ This is a soft break.
 
 |    Name    |     Cost Function    |                       Response Type                       |                         Population Minimizer                         |
 |:----------:|:--------------------:|:---------------------------------------------------------:|:--------------------------------------------------------------------:|
-|  AdaBoost  |      <img src="https://render.githubusercontent.com/render/math?math=e^{yf}">      |    <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace">            | <img src="https://render.githubusercontent.com/render/math?math=F(x) = \frac{1}{2}log\left(\frac{P(Y=1\|X=x)}{P(Y=-1\|X=x)}\right)"> |
-| LogitBoost |  <img src="https://render.githubusercontent.com/render/math?math=log_2[1 + e^{-2yf}]">  |    <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace">     |  <img src="https://render.githubusercontent.com/render/math?math=F(x)=\frac{1}{2}log\left(\frac{P(Y=1\|X=x)}{P(Y=-1\|X=x)}\right)">   |
-|   L2Boost  |  <img src="https://render.githubusercontent.com/render/math?math=\frac{(y-f)^2}{2}"> |  <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace, \mathbb{R}">    |                         <img src="https://render.githubusercontent.com/render/math?math=F(x) = E(Y\|X=x)">                           |
+|  AdaBoost  |      <img src="https://render.githubusercontent.com/render/math?math=e^{yf}">      |    <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace">            | <img src="https://render.githubusercontent.com/render/math?math=F(x) = \frac{1}{2}log\left(\frac{\mathbb{P}(Y=1\|X=x)}{\mathbb{P}(Y=-1\|X=x)}\right)"> |
+| LogitBoost |  <img src="https://render.githubusercontent.com/render/math?math=log_2[1 &#43; e^{-2yf}]">  |    <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace">     |  <img src="https://render.githubusercontent.com/render/math?math=F(x)=\frac{1}{2}log\left(\frac{\mathbb{P}(Y=1\|X=x)}{\mathbb{P}(Y=-1\|X=x)}\right)">   |
+|   L2Boost  |  <img src="https://render.githubusercontent.com/render/math?math=\frac{(y-f)^2}{2}"> |  <img src="https://render.githubusercontent.com/render/math?math=y \in \left\lbrace -1, +1 \right\rbrace, \mathbb{R}">    |                         <img src="https://render.githubusercontent.com/render/math?math=F(x) = \mathbb{E}(Y\|X=x)">                           |
 
 
 
