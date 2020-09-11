@@ -189,6 +189,38 @@ This is a soft break.
 
 
 
+# Overview of Boosting Algorithms
+
+|    Name    |     Cost Function    |                       Response Type                       |                         Population Minimizer                         |
+|:----------:|:--------------------:|:---------------------------------------------------------:|:--------------------------------------------------------------------:|
+|  AdaBoost  |       $exp(yf)$      |         $y \in \left\lbrace -1, +1 \right\rbrace$         | $F(x) = \frac{1}{2}log\left(\frac{P(Y=1\|X=x)}{P(Y=-1\|X=x)}\right)$ |
+| LogitBoost | $log_2[1+exp(-2yf)]$ |         $y \in \left\lbrace -1, +1 \right\rbrace$         | $F(x) = \frac{1}{2}log\left(\frac{P(Y=1\|X=x)}{P(Y=-1\|X=x)}\right)$ |
+|   L2Boost  |  $\frac{(y-f)^2}{2}$ | $y \in \left\lbrace -1, +1 \right\rbrace$ or $\mathbb{R}$ |                          $F(x) = E(Y\|X=x)$                          |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 You can use the [editor on GitHub](https://github.com/YinpuLi/blogs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 
